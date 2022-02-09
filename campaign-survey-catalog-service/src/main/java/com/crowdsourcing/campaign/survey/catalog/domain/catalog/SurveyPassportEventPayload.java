@@ -1,6 +1,5 @@
 package com.crowdsourcing.campaign.survey.catalog.domain.catalog;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +12,13 @@ public class SurveyPassportEventPayload {
     private String id;
     private String name;
     private String surveyCatalogId;
-    private String accessRules;
+    private String participantPassportRequirements;
 
 
-    public SurveyPassportEventPayload(String id, String name, String surveyCatalogId, String accessRules) {
+    public SurveyPassportEventPayload(String id, String name, String surveyCatalogId, String participantPassportRequirements) {
         this.id = id;
         this.name = name;
         this.surveyCatalogId = surveyCatalogId;
-        this.accessRules = accessRules;
+        this.participantPassportRequirements = participantPassportRequirements;
     }
 }
