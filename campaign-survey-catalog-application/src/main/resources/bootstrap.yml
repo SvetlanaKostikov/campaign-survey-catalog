@@ -1,0 +1,72 @@
+spring:
+  application:
+    name: campaign-survey-catalog
+  cloud:
+    config:
+      name: campaign-survey-catalog
+      discovery:
+        enabled: true
+        service-id: config-service
+      username: ${SPRING_CLOUD_CONFIG_USERNAME}
+      password: ${SPRING_CLOUD_CONFIG_PASSWORD}
+
+encrypt:
+  keyStore:
+    location: ${ENCRYPT_KEYSTORE_LOCATION}
+    password: ${ENCRYPT_KEYSTORE_PASSWORD}
+    alias: ${ENCRYPT_KEYSTORE_ALIAS}
+    secret: ${ENCRYPT_KEYSTORE_SECRET}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+
+---
+spring:
+  profiles: test-localhost
+  cloud:
+    config:
+      name: campaign-survey-catalog
+      discovery:
+        enabled: true
+        service-id: config-service
+      username: ${SPRING_CLOUD_CONFIG_USERNAME:config-service-user}
+      password: ${SPRING_CLOUD_CONFIG_PASSWORD:test}
+
+
+encrypt:
+  keyStore:
+    location: ${ENCRYPT_KEYSTORE_LOCATION}
+    password: ${ENCRYPT_KEYSTORE_PASSWORD}
+    alias: ${ENCRYPT_KEYSTORE_ALIAS}
+    secret: ${ENCRYPT_KEYSTORE_SECRET}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+
+---
+spring:
+  profiles: test-hosts
+  cloud:
+    config:
+      name: campaign-survey-catalog
+      discovery:
+        enabled: true
+        service-id: config-service
+      username: ${SPRING_CLOUD_CONFIG_USERNAME:config-service-user}
+      password: ${SPRING_CLOUD_CONFIG_PASSWORD:test}
+
+encrypt:
+  keyStore:
+    location: ${ENCRYPT_KEYSTORE_LOCATION}
+    password: ${ENCRYPT_KEYSTORE_PASSWORD}
+    alias: ${ENCRYPT_KEYSTORE_ALIAS}
+    secret: ${ENCRYPT_KEYSTORE_SECRET}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://service-discovery:8761/eureka}
