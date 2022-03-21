@@ -1,10 +1,4 @@
-create table if not exists survey_passports
-(
-    survey_id            varchar(100) not null primary key unique,
-    survey_name          varchar(3000),
-    survey_catalog_id    varchar(100)
-    );
-create table survey_passport_event
+create table if not exists survey_passport_event
 (
     event_id                varchar(100) not null primary key unique,
     event_author            varchar(100),

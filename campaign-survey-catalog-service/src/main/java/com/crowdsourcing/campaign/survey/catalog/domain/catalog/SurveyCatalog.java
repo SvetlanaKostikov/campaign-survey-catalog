@@ -9,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="survey_catalogs")
+@Table(name="survey_catalog")
 public class SurveyCatalog {
 
     @Id

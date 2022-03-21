@@ -1,15 +1,15 @@
 package com.crowdsourcing.campaign.survey.api.web;
 
 
-import com.crowdsourcing.campaign.survey.catalog.domain.NotificationException;
+import com.crowdsourcing.campaign.survey.api.web.jwt.InvalidTokenException;
+import com.crowdsourcing.campaign.survey.catalog.domain.OperationUnauthorizedException;
 import com.crowdsourcing.campaign.survey.catalog.domain.catalog.SurveyPassportOperationException;
-import com.crowdsourcing.campaign.survey.catalog.service.SurveyPassportNotFoundException;
+import com.crowdsourcing.campaign.survey.catalog.domain.catalog.SurveyPassportNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import org.w3c.dom.events.EventException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,6 +20,14 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler
     public ResponseEntity defaultExceptionHandler(Exception e) {
         return new ResponseEntity<>(getResponseBody(e), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({
+            OperationUnauthorizedException.class,
+            InvalidTokenException.class
+    })
+    public ResponseEntity<Object> handleJwtException(Exception e) {
+        return new ResponseEntity<>(getResponseBody(e), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler({

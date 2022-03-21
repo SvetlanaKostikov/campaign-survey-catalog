@@ -1,4 +1,4 @@
-package com.crowdsourcing.campaign.survey.catalog.service;
+package com.crowdsourcing.campaign.survey.catalog.domain.catalog;
 
 public class SurveyPassportNotFoundException extends Exception {
     public SurveyPassportNotFoundException() {

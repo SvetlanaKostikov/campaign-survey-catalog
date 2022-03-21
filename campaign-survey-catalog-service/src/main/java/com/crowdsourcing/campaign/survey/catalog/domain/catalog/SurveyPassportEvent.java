@@ -15,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class SurveyPassportEvent extends EventEnvelope<SurveyPassportEventPayload> implements Serializable {
 
-    public static SurveyPassportEvent from(String surveyPassportId, SurveyPassportDescription surveyPassportDescription, EventType type) {
+    public static SurveyPassportEvent from(String surveyPassportId, SurveyPassportDescription surveyPassportDescription, EventType type, String eventAuthor) {
         String eventId = UUID.randomUUID().toString();
 
         SurveyPassportEventPayload eventPayload = new SurveyPassportEventPayload(
@@ -28,6 +28,7 @@ public class SurveyPassportEvent extends EventEnvelope<SurveyPassportEventPayloa
         return new SurveyPassportEvent(
                 eventId,
                 "survey-catalog",
+                eventAuthor,
                 type.toString(),
                 "1.0",
                 LocalDateTime.now(),
@@ -36,7 +37,7 @@ public class SurveyPassportEvent extends EventEnvelope<SurveyPassportEventPayloa
         );
     }
 
-    public static SurveyPassportEvent from(SurveyPassport surveyPassport, EventType type){
+    public static SurveyPassportEvent from(SurveyPassport surveyPassport, EventType type, String eventAuthor){
         String eventId = UUID.randomUUID().toString();
 
         SurveyPassportEventPayload eventPayload = new SurveyPassportEventPayload(
@@ -49,6 +50,7 @@ public class SurveyPassportEvent extends EventEnvelope<SurveyPassportEventPayloa
         return new SurveyPassportEvent(
                 eventId,
                 "survey-catalog",
+                eventAuthor,
                 type.toString(),
                 "1.0",
                 LocalDateTime.now(),
@@ -59,8 +61,8 @@ public class SurveyPassportEvent extends EventEnvelope<SurveyPassportEventPayloa
 
 
 
-    public SurveyPassportEvent(String eventId, String eventOccurringContext, String eventType, String eventVersion, LocalDateTime eventOccurringTime, String eventEntityId, SurveyPassportEventPayload eventPayload) {
-        super(eventId, eventOccurringContext, eventType, eventVersion, eventOccurringTime, eventEntityId, eventPayload);
+    public SurveyPassportEvent(String eventId, String eventOccurringContext, String eventAuthor, String eventType, String eventVersion, LocalDateTime eventOccurringTime, String eventEntityId, SurveyPassportEventPayload eventPayload) {
+        super(eventId, eventOccurringContext, eventAuthor, eventType, eventVersion, eventOccurringTime, eventEntityId, eventPayload);
     }
 
     public EventType extractEventType() {

@@ -24,9 +24,10 @@ public class SurveyPassport {
         return status.equals("SURVEY_PASSPORT_DELETED");
     }
 
-    public static Optional<SurveyPassport> create(List<SurveyPassportEvent> events) {
+    public static Optional<SurveyPassport> create (List<SurveyPassportEvent> events) {
         if (events.isEmpty()) {
             return Optional.empty();
+
         } else {
             String actualStatus = findActualStatus(events);
             String surveyCatalogId = findSurveyCatalogId(events);

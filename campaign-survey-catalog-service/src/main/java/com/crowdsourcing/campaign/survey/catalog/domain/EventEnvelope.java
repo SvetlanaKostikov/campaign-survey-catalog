@@ -1,6 +1,5 @@
 package com.crowdsourcing.campaign.survey.catalog.domain;
 
-import com.crowdsourcing.campaign.survey.catalog.api.events.CampaignEventPayload;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +34,12 @@ public class EventEnvelope<T> {
     private String eventOccurringContext;
 
     /**
+     * Id пользователя, создавшего событие
+     */
+    @Column(name = "event_author")
+    private String eventAuthor;
+
+    /**
      * Тип события
      */
     @Column(name = "event_type")
@@ -65,6 +70,4 @@ public class EventEnvelope<T> {
     @Column(name = "event_payload", columnDefinition = "jsonb")
     private T eventPayload;
 
-    public EventEnvelope(String eventId, String eventOccurringContext, String eventAuthor, String eventType, String eventVersion, LocalDateTime eventOccurringTime, String eventEntityId, CampaignEventPayload eventPayload) {
-    }
 }
